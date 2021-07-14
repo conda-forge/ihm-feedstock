@@ -1,5 +1,5 @@
 {% set name = "ihm" %}
-{% set version = "0.20" %}
+{% set version = "0.21" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ihm-{{ version }}.tar.gz
-  sha256: 9ad9fd69c0707d58a216973591c5c8c98b3c82bfc59781f7b2693620d912c9c6
+  sha256: 73ceb7d9882e0758b94f77671f84a65186d1d306e1027d10b564147ae853e646
 
 build:
   number: 0
@@ -46,7 +46,7 @@ about:
     (https://github.com/dsehnal/BinaryCIF) files compliant with the
     integrative/hybrid modeling (IHM) extension
     (http://mmcif.wwpdb.org/dictionaries/mmcif_ihm.dic/Index/).
-    It works with Python 2.6 or later (Python 3 is fully supported).
+    It works with Python 2.7 or Python 3.
 
     Please see the documentation at https://python-ihm.readthedocs.org/
     or some worked examples at
