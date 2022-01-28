@@ -1,5 +1,5 @@
 {% set name = "ihm" %}
-{% set version = "0.26" %}
+{% set version = "0.27" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ihm-{{ version }}.tar.gz
-  sha256: 67361d1cec8e3084f01f09936e71eda4277546889ea9efd0e3d8984fb26d9bf0
+  sha256: f120fe15921b2058190dc3e6d6a4da125d04b90dd4ea486e070dbe9e72d033cf
 
 build:
   number: 0
