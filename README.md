@@ -1,11 +1,11 @@
-About ihm
-=========
+About ihm-feedstock
+===================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ihm-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/ihmwg/python-ihm
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ihm-feedstock/blob/main/LICENSE.txt)
 
 Summary: Package for handling IHM mmCIF and BinaryCIF files
 
