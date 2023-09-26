@@ -1,5 +1,5 @@
 {% set name = "ihm" %}
-{% set version = "0.39" %}
+{% set version = "0.40" %}
 
 
 package:
@@ -8,10 +8,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ihm-{{ version }}.tar.gz
-  sha256: 7f31b8e247e5a0ac0ee67783a52ec0da893932333578d490e2dac4fef058d54a
+  sha256: ef33f5c089ec6bb09ace79dd395e46e90df7641f11557b05755dbac1009e0cb7
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
