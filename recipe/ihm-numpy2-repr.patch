@@ -1,0 +1,53 @@
+commit f584b404b919f4d5f80bea5c59137eb0852bb592
+Author: Ben Webb <ben@salilab.org>
+Date:   Tue Jun 18 10:56:03 2024 -0700
+
+    Render numpy 2 ints correctly in output mmCIF
+    
+    repr(numpy.int32(42)) in numpy 2 now returns 'np.int32(42)'
+    rather than just '42', which results in invalid mmCIF
+    output, so add a workaround.
+
+diff --git a/ihm/format.py b/ihm/format.py
+index 9e8d203..a043011 100644
+--- a/ihm/format.py
++++ b/ihm/format.py
+@@ -228,8 +228,10 @@ class CifWriter(_Writer):
+         # which isn't valid mmCIF syntax. _long_type = long only on Python 2.
+         elif isinstance(obj, _long_type):
+             return "%d" % obj
+-        else:
++        elif isinstance(obj, str):
+             return repr(obj)
++        else:
++            return str(obj)
+ 
+ 
+ # Acceptable 'whitespace' characters in CIF
+diff --git a/test/test_format.py b/test/test_format.py
+index 5e6ce71..4425da1 100644
+--- a/test/test_format.py
++++ b/test/test_format.py
+@@ -2,6 +2,10 @@ import utils
+ import os
+ import unittest
+ import sys
++try:
++    import numpy
++except ImportError:
++    numpy = None
+ 
+ if sys.version_info[0] >= 3:
+     from io import StringIO
+@@ -226,6 +230,11 @@ x
+         # Literal . must be quoted to distinguish from the omitted value
+         self.assertEqual(w._repr('.foo'), ".foo")
+         self.assertEqual(w._repr('.'), "'.'")
++        # Make sure that numpy ints are treated like plain ints,
++        # not rendered as "np.int32(42)" or similar
++        if numpy is not None:
++            self.assertEqual(w._repr(numpy.int32(42)), '42')
++            self.assertEqual(w._repr(numpy.int64(42)), '42')
+ 
+     def test_reader_base(self):
+         """Test Reader base class"""
