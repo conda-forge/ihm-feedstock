@@ -15,10 +15,10 @@ Documentation: https://python-ihm.readthedocs.io/
 
 This is a Python package to assist in handling mmCIF
 (http://mmcif.wwpdb.org/) and BinaryCIF
-(https://github.com/dsehnal/BinaryCIF) files compliant with the
+(https://github.com/molstar/BinaryCIF) files compliant with the
 integrative/hybrid modeling (IHM) extension
 (http://mmcif.wwpdb.org/dictionaries/mmcif_ihm.dic/Index/).
-It works with Python 2.7 or Python 3.
+It works with Python 3.6 or later.
 
 Please see the documentation at https://python-ihm.readthedocs.org/
 or some worked examples at
