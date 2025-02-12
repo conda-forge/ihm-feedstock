@@ -1,0 +1,49 @@
+diff --git a/src/ihm_format.c b/src/ihm_format.c
+index 87674a4..89df54f 100644
+--- a/src/ihm_format.c
++++ b/src/ihm_format.c
+@@ -2479,16 +2479,13 @@ static bool decode_bcif_string_array(struct bcif_data *d,
+   strarr = (char **)ihm_malloc(d->size * sizeof(char *));
+   for (i = 0; i < d->size; ++i) {
+     int32_t strnum = get_int_data(d, i);
+-    /* make sure strnum in range */
++    /* If strnum out of range, return a null string (this usually corresponds
++       to masked data) */
+     if (strnum < 0 || (size_t)strnum >= enc->offsets.size) {
+-      free(strarr);
+-      free(starts);
+-      ihm_error_set(err, IHM_ERROR_FILE_FORMAT,
+-                    "StringArray index %d out of range 0-%d",
+-                    strnum, enc->offsets.size - 1);
+-      return false;
++      strarr[i] = "";
++    } else {
++      strarr[i] = enc->string_data + starts[strnum];
+     }
+-    strarr[i] = enc->string_data + starts[strnum];
+   }
+   free(starts);
+   bcif_data_free(d);
+diff --git a/test/test_format_bcif.py b/test/test_format_bcif.py
+index 0c8189c..e0c1803 100644
+--- a/test/test_format_bcif.py
++++ b/test/test_format_bcif.py
+@@ -882,14 +882,14 @@ class Tests(unittest.TestCase):
+         self.assertRaises(_format.FileFormatError, self._read_bcif_raw,
+                           d, {'_foo': h})
+ 
+-        # Indices must be in range
+-        for data in (struct.pack('2b', 0, 40), struct.pack('b', -32)):
++        # Out-of-range indices return empty strings
++        for data in (struct.pack('b', 40), struct.pack('b', -32)):
+             d = make_bcif(data=data, data_type=ihm.format_bcif._Int8,
+                           offsets=b'\x00\x01\x03',
+                           offsets_type=ihm.format_bcif._Uint8)
+             h = GenericHandler()
+-            self.assertRaises(_format.FileFormatError, self._read_bcif_raw,
+-                              d, {'_foo': h})
++            self._read_bcif_raw(d, {'_foo': h})
++            self.assertEqual(h.data, [{'bar': ''}])
+ 
+     @unittest.skipIf(_format is None, "No C tokenizer")
+     def test_fixed_point_encoding_c(self):

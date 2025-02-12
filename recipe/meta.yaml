@@ -9,6 +9,9 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/ihm-{{ version }}.tar.gz
   sha256: 50d4fbef40138c7cabe6626a2ff25fb951256738ecce1274032feea7af9604b1
+  patches:
+    - string_array_index.patch
+    - float32_column.patch
 
 build:
   number: 0
