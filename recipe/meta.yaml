@@ -1,5 +1,5 @@
 {% set name = "ihm" %}
-{% set version = "2.0" %}
+{% set version = "2.1" %}
 
 
 package:
@@ -8,10 +8,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/ihm-{{ version }}.tar.gz
-  sha256: 50d4fbef40138c7cabe6626a2ff25fb951256738ecce1274032feea7af9604b1
-  patches:
-    - string_array_index.patch
-    - float32_column.patch
+  sha256: 81a567fe442498c7b124e3810817d91e8923bfaa8aa4327510048bb89d88161d
 
 build:
   number: 0
