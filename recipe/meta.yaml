@@ -1,5 +1,5 @@
 {% set name = "ihm" %}
-{% set version = "2.11" %}
+{% set version = "2.12" %}
 
 
 package:
@@ -8,10 +8,10 @@ package:
 
 source:
   url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/ihm-{{ version }}.tar.gz
-  sha256: cb1bc75af04c5a7271f788f8018f30ee747a4d73fc45ab23f05d094ca44c0f0c
+  sha256: 1172cb95007d02dd32fdfde257806d43f63f976ddec9ffaa78265ff9e244f3ec
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
