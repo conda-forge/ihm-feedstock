@@ -10,7 +10,7 @@ source:
   url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/ihm-{{ version }}.tar.gz
   sha256: 1172cb95007d02dd32fdfde257806d43f63f976ddec9ffaa78265ff9e244f3ec
   patches:
-    - ihm-limited-api.patch
+    - ihm-limited-api.patch          # [is_abi3]
 
 build:
   number: 0
