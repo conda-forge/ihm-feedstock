@@ -1,0 +1,14 @@
+diff --git a/setup.py b/setup.py
+index 0dcdf66..7b7fc56 100755
+--- a/setup.py
++++ b/setup.py
+@@ -18,8 +18,7 @@ if '--without-ext' in copy_args:
+     copy_args.remove('--without-ext')
+ 
+ # Allow building with Python limited API
+-if '--py_limited_api' in copy_args:
+-    copy_args.remove('--py_limited_api')
++if True:
+     # We require Python 3.11 or later since we use PyBUF_WRITE which only
+     # became part of the stable API in 3.11
+     ext_limited_args = {
